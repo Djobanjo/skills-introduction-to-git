@@ -29,11 +29,17 @@ Git has many operations, but the there are a few you will use the most for local
 - `git checkout` - Change your working directory to a different version from the repository history.
 
 > [!TIP]
-> Concise, descriptive, and non-generic commit messages will make your project history easier to understand (and help find future bugs)!
+> Don't undervalue the commit message! A clear, concise, descriptive, and non-generic message will make your project history much easier to understand (and help find those future bugs)!
 
-### ⌨️ Activity 1: Initialize a repository (using the CLI)
+### ⌨️ Activity 1: Initialize a project repository (using the CLI)
 
 Let's add version control to our game and commit the current version.
+
+1. In the terminal, navigate to the project directory.
+
+   ```bash
+   cd /workspaces/stack-overflown
+   ```
 
 1. Initialize a new Git repository.
 
@@ -41,40 +47,56 @@ Let's add version control to our game and commit the current version.
    git init
    ```
 
-1. Check repository status. Notice that all files are marked as "Untracked".
+1. Check repository status. Notice it says "No commits yet" and the tip to use `git add`.
 
    ```bash
    git status
    ```
 
-1. Move our game to the staging area to prepare it for committing to the repository history.
+   <img width="500px" src="https://github.com/skills-dev/getting-started-with-git/blob/ef19134a80efd6e9e177684995a39c7db379635a/.github/steps/images/2-1.png"/>
+
+1. Put the game files in the staging area to prepare them for committing to the repository history.
 
    ```bash
    git add src/main.html
    git add src/main.js
+   git add src/patterns.js
+   git add src/style.css
    ```
 
-1. Check repository status. Notice that our source files are now tracked.
+   or
+
+   ```bash
+   git add src/*
+   ```
+
+1. Check the repository status again. Notice that now our files are recognized as "new files".
 
    ```bash
    git status
    ```
 
-1. Commit the changes to the repository history.
+   <img width="500px" src="https://github.com/skills-dev/getting-started-with-git/blob/ef19134a80efd6e9e177684995a39c7db379635a/.github/steps/images/2-2.png"/>
+
+1. Commit the changes to the repository history. Our project history is now started! :octocat:
 
    ```bash
    git commit -m "Initial commit"
    ```
 
-1. Check repository status. Notice that nothing shows since there are no changes.
+   (pending image)
+
+1. Check repository status. Notice the "working tree clean" which means our current copy perfectly matches the history.
 
    ```bash
    git status
    ```
 
-### ⌨️ Activity 2: Start tracking a file (using VS Code)
+   <img width="500px" src="https://github.com/skills-dev/getting-started-with-git/blob/ef19134a80efd6e9e177684995a39c7db379635a/.github/steps/images/2-4.png"/>
 
-Let's use our code editor to start the documentation for our game.
+### ⌨️ Activity 2: Work on a file (using VS Code)
+
+Let's also try adding files with our code editor, in this case the documentation for our game.
 
 1. In the file explorer, click the **New File...** icon and enter the following filename.
 
@@ -82,7 +104,9 @@ Let's use our code editor to start the documentation for our game.
    README.md
    ```
 
-1. Open the file and enter the following content.
+   <img width="350px" src="https://github.com/skills-dev/getting-started-with-git/blob/ef19134a80efd6e9e177684995a39c7db379635a/.github/steps/images/2-5.png"/>
+
+1. Open the file and insert the following content.
 
    ```md
    # Stack Overflown
@@ -90,9 +114,13 @@ Let's use our code editor to start the documentation for our game.
    Organize the falling blocks into the current debug pattern before the stack overflows! ⏳
    ```
 
-1. In the left navigation, select the **Source Control** tab. Notice that your `README.md` file is listed.
+1. In the left navigation, select the **Source Control** tab. Notice the `README.md` file is listed under the **Changes** area.
 
-1. Stage the file by by hovering over file and selecting the plus sign `+` button.
+   <img width="350px" src="https://github.com/skills-dev/getting-started-with-git/blob/ef19134a80efd6e9e177684995a39c7db379635a/.github/steps/images/2-6.png"/>
+
+1. Stage the file by hovering over file and selecting the plus sign `+` button.
+
+   <img width="350px" src="https://github.com/skills-dev/getting-started-with-git/blob/ef19134a80efd6e9e177684995a39c7db379635a/.github/steps/images/2-7.png"/>
 
 1. Enter a commit message and press the **Commit** button.
 
@@ -100,9 +128,30 @@ Let's use our code editor to start the documentation for our game.
    Start game documentation
    ```
 
+   <img width="350px" src="https://github.com/skills-dev/getting-started-with-git/blob/ef19134a80efd6e9e177684995a39c7db379635a/.github/steps/images/2-8.png"/>
+
+1. For a second commit, add the following content.
+
+   ```md
+   ## How to Develop
+
+   - `main.html` - the game container for playing
+   - `style.css` - the game formatting and styling
+   - `main.js` - the primary game logic
+   - `patterns.js` - the error patterns to match during gameplay
+   ```
+
+1. Promote the file change to **Staged Changes** then enter a commit message and press the **Commit** button.
+
+   ```txt
+   Start developer docs
+   ```
+
+   <img width="350px" src="https://github.com/skills-dev/getting-started-with-git/blob/ef19134a80efd6e9e177684995a39c7db379635a/.github/steps/images/2-9.png"/>
+
 ### ⌨️ Activity 3: (Optional) Ignore files from version control
 
-As your project grows, you will quickly realize you do not want some files tracked. You can tell Git to ignore them with the `.gitignore` file.
+As your project grows, you will quickly realize you do not want some files tracked. You can tell Git to ignore them with a `.gitignore` file.
 
 This can help prevent accidentally sharing sensitive information like passwords, and help keep the project organized by not saving generated content like analysis results or builds.
 

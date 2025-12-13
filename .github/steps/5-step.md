@@ -1,36 +1,37 @@
 ## Step 5: Working with Branches
 
-With our game now tracked, we know it is easy to return to a working version. With that confidence, le'ts work on a new feature.
+With our game now tracked, we know it is easy to return to a working version. And since we can see the exact changes we are committing to history, we know nothing unrelated will be included.
 
-> Does it feel nice to not need to copy the entire project folder as a backup "just in case".
+But now, that brings up more questions! 😱
+
+"How do I prevent a messy history?"
+
+"How do I avoid non-working versions in the history from incomplete work?"
+
+"What if I need to work on multiple features/fixes at the same time?"
 
 ### 📖 Theory: Understanding Branches
 
-Branches in Git are lightweight pointers (or labels) to commits. This allows working on a dependent version without influencing the original, something great for parallel feature development and collaboration.
+Branches in Git are lightweight pointers (like labels) to specific commits. This allows working on a dependent version without influencing the original, something great for parallel feature development and collaboration.
 
 Key Concepts:
 
-- **`main` Branch**: Usually the trusted working version. (historically called `master`)
+- **`main` Branch**: Usually the trusted working version, and the first branch. (historically called `master`)
 - **Feature Branch**: A safe isolated space to develop without affecting the trusted version.
 - **Merging**: Combining changes from different branches.
 
 ### How do you combine branches?
 
-There are multiple strategies for organizing commits. Usually, all in the name of different styles of organization, transparency, and traceability.
+There are multiple strategies for organizing commits. Usually, all in the name of different styles of organization, transparency, and traceability. Let's introduce the most common.
 
-**Fast-forward Merge**: Move the new commits from the feature branch onto the parent branch.
+**Fast-forward merge**: Move the new commits from the child branch onto the parent branch.
 
-<table>
-<tr>
-<td>Before: Original</td>
-<td>After: Fast Forward Merge</td>
-</tr>
+<div align="center">
 
-<tr>
-<td>
+**Before:** Original
 
 ```mermaid
-gitGraph TB:
+gitGraph LR:
    commit id: "A"
    commit id: "B"
    branch feature
@@ -38,47 +39,39 @@ gitGraph TB:
    commit id: "D"
 ```
 
-</td>
-<td>
+**After:** Fast Forward Merge
 
 ```mermaid
-gitGraph TB:
+gitGraph LR:
    commit id: "A"
    commit id: "B"
    commit id: "C"
    commit id: "D"
 ```
 
-</td>
-</tr>
-</table>
+</div>
 
 **Merge commit**: Apply the changes as a single new commit on the parent branch. Leave the child branch in the network for traceability.
 
-<table>
-<tr>
-<td>Before: Original</td>
-<td>After: Merge Commit</td>
-</tr>
+<div align="center">
 
-<tr>
-<td>
+**Before:** Original
 
 ```mermaid
 
-gitGraph TB:
+gitGraph LR:
    commit id: "A"
    commit id: "B"
    branch feature
    commit id: "C"
    commit id: "D"
+   checkout main
 ```
 
-</td>
-<td>
+**After:** Merge Commit
 
 ```mermaid
-gitGraph TB:
+gitGraph LR:
 
    commit id: "A"
    commit id: "B"
@@ -89,23 +82,16 @@ gitGraph TB:
    merge feature id: "E"
 ```
 
-</td>
-</tr>
-</table>
+</div>
 
-- **Squash merge**: Collapse the commits from one branch into a single new commit on the other branch.
+**Squash merge**: Collapse the commits from one branch into a single new commit on the other branch.
 
-<table>
-<tr>
-<td>Before: Original</td>
-<td>After: Squash Commit</td>
-</tr>
+<div align="center">
 
-<tr>
-<td>
+**Before:** Original
 
 ```mermaid
-gitGraph TB:
+gitGraph LR:
    commit id: "A"
    commit id: "B"
    branch feature
@@ -113,19 +99,16 @@ gitGraph TB:
    commit id: "D"
 ```
 
-</td>
-<td>
+**After:** Squash Commit
 
 ```mermaid
-gitGraph TB:
+gitGraph LR:
    commit id: "A"
    commit id: "B"
    commit id: "C+D"
 ```
 
-</td>
-</tr>
-</table>
+</div>
 
 ### What are the important Git commands?
 
@@ -137,23 +120,36 @@ gitGraph TB:
 > You can perform a simple "undo" of the last commit with `git reset --soft HEAD~1`. For VS Code, use the Command Palette and search for `Undo Last Commit`. -->
 
 > [!TIP]
-> Git 2.23 introduced a the `git switch` command to simplify branch management. You might start seeing it referenced more often in the future.
+> Git 2.23 introduced the `git switch` command to simplify branch management. You will likely see it referenced more in the future.
 
 <!-- Since Git 2.23 -->
 <!-- `git switch --create <branch name>` -->
 <!-- `git switch branch-name` -->
 
-### ⌨️ Activity 1: Develop on a branch (using the CLI)
+### ⌨️ Activity 1: Commit to a branch (using the CLI)
 
-1. Before we start, let's visually check the current history.
+Let's start a branch and practice committing changes to it.
+
+1. If necessary, return to the project folder.
 
    ```bash
-   git log --graph --oneline
+   cd /workspaces/stack-overflown
    ```
 
-1. Create a new branch:
+1. Before we start, let's see what our history looks like. Notice that it is perfectly linear (no branches yet).
 
-   - `git branch add-block-preview`
+   ```bash
+   git log --all --graph --oneline
+   ```
+
+   <img width="500px" src="https://github.com/skills-dev/getting-started-with-git/blob/ef19134a80efd6e9e177684995a39c7db379635a/.github/steps/images/5-1.png"/>
+
+1. Create a new branch and switch to it.
+
+   ```bash
+   git branch fix-incomplete-high-score
+   git checkout fix-incomplete-high-score
+   ```
 
 1. Show a list of the available branches.
 
@@ -161,98 +157,189 @@ gitGraph TB:
    git branch --list
    ```
 
-1. Open `main.js` and insert the following code.
+   <img width="500px" src="https://github.com/skills-dev/getting-started-with-git/blob/ef19134a80efd6e9e177684995a39c7db379635a/.github/steps/images/5-2.png"/>
+
+1. Open `main.js` so we can fix the high score feature.
+
+1. On `line 41`, insert a variable for high score and then commit it.
 
    ```js
-   // (pending)
+   let highScore = 0;
    ```
 
-1. Open `main.html` and insert the following code.
-
-   ```html
-   <!-- pending -->
-   ```
-
-1. Commit the change with the following message.
-
-   ```txt
+   ```bash
    git add src/main.js
-   git add src/main.html
-   git commit "add preview for upcoming block"
+   git commit -m "Add new variable for tracking high score"
    ```
 
-1. Update the readme.
+1. On `line 61`, insert code to load the score from local storage and then commit it.
 
-   ```md
-   (pending)
+   ```js
+   // Load high score from localStorage
+   highScore = parseInt(localStorage.getItem("stackOverflownHighScore")) || 0;
+   document.getElementById("high-score").textContent = highScore;
    ```
 
-1. Commit the change with the following message.
-
-   ```txt
-   git add README.md
-   git commit -m "add description of upcoming block feature"
+   ```bash
+   git add src/main.js
+   git commit -m "Add loading of stored high score"
    ```
 
-1. Switch back to `main` branch:
+1. On `line 316`, insert code to track of the highest score and then commit it.
 
-   - `git checkout main`
-   - or `git switch main`
+   ```js
+   // Update high score if current score exceeds it
+   if (score > highScore) {
+     highScore = score;
+     document.getElementById("high-score").textContent = highScore;
+     localStorage.setItem("stackOverflownHighScore", highScore);
+   }
+   ```
+
+   ```bash
+   git add src/main.js
+   git commit -m "Add logic to keep track of highest score"
+   ```
+
+1. Let's look at the history graph again. Notice our feature branch has 3 more commits than the `main` branch, and that our feature branch is marked with `HEAD` clarifying our current version.
+
+   ```bash
+   git log --all --graph --oneline
+   ```
+
+   <img width="500px" src="https://github.com/skills-dev/getting-started-with-git/blob/ef19134a80efd6e9e177684995a39c7db379635a/.github/steps/images/5-3.png"/>
+
+1. Switch back to the `main` branch.
+
+   ```bash
+   git checkout main
+   ```
 
 1. Merge the new feature.
 
    ```bash
-   git merge --no-ff add-block-preview
+   git merge --no-ff fix-incomplete-high-score -m "Fix high score tracker"
    ```
+
+   <img width="500px" src="https://github.com/skills-dev/getting-started-with-git/blob/ef19134a80efd6e9e177684995a39c7db379635a/.github/steps/images/5-4.png"/>
 
    For learning, we use the "not fast forward" option so the branch stays visible in the history. It will make our next history more interesting to explore.
 
-1. Delete the pointer/label to the feature branch, since it is now merged.
+1. Let's look at the history graph again. Notice the parallel branch that is now merged.
 
    ```bash
-   git branch --delete add-block-preview
+   git log --all --graph --oneline
+   ```
+
+   <img width="500px" src="https://github.com/skills-dev/getting-started-with-git/blob/ef19134a80efd6e9e177684995a39c7db379635a/.github/steps/images/5-5.png"/>
+
+1. Remove the pointer/label to the feature branch, since it is now merged and no longer needed.
+
+   ```bash
+   git branch --delete fix-incomplete-high-score
    ```
 
    > 🪧 **Note**: This does not delete the branch content, just the name used for referencing it.
 
-1. View the branching history. Notice the parallel branch we developed our new feature on.
+### ⌨️ Activity 2: Commit to a branch (using VS Code)
 
-   ```bash
-   git log --graph --oneline
-   ```
+1. In the left navigation, open the **Source Control panel**. To the right of the project name, click on the branch name `main`. A menu will appear with options.
 
-### ⌨️ Activity 2: Develop on a branch in VS Code
+   <img width="350px" src="https://github.com/skills-dev/getting-started-with-git/blob/ef19134a80efd6e9e177684995a39c7db379635a/.github/steps/images/5-6.png"/><br/>
 
-1. In the left navigation, open the Source Control panel.
+   <img width="350px" src="https://github.com/skills-dev/getting-started-with-git/blob/ef19134a80efd6e9e177684995a39c7db379635a/.github/steps/images/5-7.png"/>
 
-1. To the right of the project name, click on the branch name `main`. A menu will appear with options.
+1. Make sure the **Graph** panel is visible. Let's watch it update as we apply changes.
 
-1. Select **Create a new branch...** and enter the below name.
+1. Select the **Create a new branch...** option and provide the below name.
 
    ```txt
-   cleanup-and-typos
+   git branch add-level-counter
+   git checkout add-level-counter
    ```
 
-1. Open `README.md` and fix the following typo.
+   <img width="350px" src="https://github.com/skills-dev/getting-started-with-git/blob/ef19134a80efd6e9e177684995a39c7db379635a/.github/steps/images/5-8.png"/>
+
+1. Open `main.html`. On `line 21`, insert a new element for showing the current level, then commit the change.
 
    ```diff
-   - Some txt
-   + Some text
+   <h3>Level</h3>
+   <div class="score" id="level">1</div>
    ```
 
-1. Add the file to the staging area and commit it with the below message.
-
-   ```txt
-   fix typo in readme
+   ```bash
+   git add src/main.html
+   git commit -m "Add element to display current level"
    ```
 
-1. In the Source Control panel, notice the **Graph** section shows both branches in parallel.
+1. Open `main.js` so we can add the level counter.
 
-1. Click on the branch name again and select `main`
+1. On `line 42`, add 2 variables for tracking level, then commit the change.
 
-1. Click the three dot menu (`...`), then `Branch`, and select `Merge...`
+   ```js
+   let level = 1;
+   let patternsCleared = 0;
+   ```
 
-1. In the Source Control panel, notice the **Graph** section shows the merged branch.
+   Commit Message
+
+   ```bash
+   Add variables for level and clear counter
+   ```
+
+1. On `line 273`, replace the `checkPatternMatch` method with the following, then commit the change.
+
+   ```js
+   function checkPatternMatch() {
+     for (let startRow = 0; startRow <= ROWS - PATTERN_SIZE; startRow++) {
+       for (let startCol = 0; startCol <= COLS - PATTERN_SIZE; startCol++) {
+         if (matchesPattern(startRow, startCol)) {
+           clearPattern(startRow, startCol);
+           score += 100;
+           patternsCleared++;
+           if (patternsCleared % 5 === 0) {
+             level++;
+             dropInterval = Math.max(200, 1000 - (level - 1) * 100);
+             document.getElementById("level").textContent = level;
+           }
+           updateScore();
+           setNewTargetPattern();
+           return;
+         }
+       }
+     }
+   }
+   ```
+
+   Commit Message
+
+   ```bash
+   Add logic to show next level
+   ```
+
+1. Notice the **Graph** panel shows the history, previous branch, and new commits.
+
+   <img width="350px" src="https://github.com/skills-dev/getting-started-with-git/blob/ef19134a80efd6e9e177684995a39c7db379635a/.github/steps/images/5-9.png"/>
+
+1. To prepare for merging, click the branch name again and select the `main` branch.
+
+   <img width="350px" src="https://github.com/skills-dev/getting-started-with-git/blob/ef19134a80efd6e9e177684995a39c7db379635a/.github/steps/images/5-10.png"/><br/>
+
+   <img width="350px" src="https://github.com/skills-dev/getting-started-with-git/blob/ef19134a80efd6e9e177684995a39c7db379635a/.github/steps/images/5-11.png"/>
+
+1. Click the three dot menu (`...`), then `Branch`, and select `Merge...`. Notice it performed a normal **Fast Forward** style merge.
+
+   <img width="350px" src="https://github.com/skills-dev/getting-started-with-git/blob/ef19134a80efd6e9e177684995a39c7db379635a/.github/steps/images/5-12.png"/><br/>
+
+   <img width="350px" src="https://github.com/skills-dev/getting-started-with-git/blob/ef19134a80efd6e9e177684995a39c7db379635a/.github/steps/images/5-13.png"/><br/>
+
+   <img width="350px" src="https://github.com/skills-dev/getting-started-with-git/blob/ef19134a80efd6e9e177684995a39c7db379635a/.github/steps/images/5-14.png"/>
+
+1. Click the three dot menu (`...`), then `Branch`, and select `Delete Branch...`.
+
+   <img width="350px" src="https://github.com/skills-dev/getting-started-with-git/blob/ef19134a80efd6e9e177684995a39c7db379635a/.github/steps/images/5-12.png"/><br/>
+
+   <img width="350px" src="https://github.com/skills-dev/getting-started-with-git/blob/1d8e00d54f432da127ab2d6020572babec1e9a98/.github/steps/images/5-15.png"/>
 
 <details>
 <summary>Having trouble? 🤷</summary><br/>
@@ -260,4 +347,3 @@ gitGraph TB:
 - If you made a typo in your branch name, you can rename it with `git branch --move old-name new-name`
 
 </details>
-```
