@@ -16,7 +16,7 @@ Here's a recap of your accomplishments:
 
 ### What's next?
 
-Ready to practice collaboration? Here's the next exercise! :ocotocat:
+Ready to practice collaboration? Here's the next exercise! :octocat:
 
 [![Skills](https://img.shields.io/badge/Skills-Collaborate_using_Git_→-text?style=flat&logo=github&labelColor=1f2328&color=1f883d)](https://github.com/skills/collaborate-using-git)
 
