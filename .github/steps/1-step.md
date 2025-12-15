@@ -42,15 +42,20 @@ For example, the community has streamlined Git into nearly all development workf
 - **Command Line Interface (CLI)** - The original tool and source of all functionality.
 - **Code Editors** - Alongside your favorite coding editors/tools. Examples:
   - Visual Studio Code
-  - JetBrains products
+  - JetBrains IDEs
+  - Xcode
+  - Emacs/VIM
 - **Hosting Services** - Centralized Git Hosts, with online editing through the web browser. Examples:
   - GitHub
   - GitLab
+  - Gitea
   - Azure DevOps
   - AWS CodeCommit
   - BitBucket
 - **Desktop Applications** - Friendly graphical interfaces. Examples:
   - GitHub Desktop
+  - Sourcetree
+  - TortoiseGit
   - GitKraken
   - Git Butler
   - And many more: https://git-scm.com/tools/guis

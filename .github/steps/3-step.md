@@ -21,18 +21,19 @@ config:
 ---
 gitGraph
    commit id: "9c6ef8a Initial commit"
-   commit id: "16ac970 Start game documentation" tag: "HEAD"
+   commit id: "16ac970 Start game documentation"
+   commit id: "762ac02 Start developer docs" tag: "HEAD"
 ```
 
 ### What are the important Git commands?
 
-Everyone has a different preference for exploring the history.
-Here are a few of the common commands and options you will use often.
+Everyone prefers viewing the history in different ways, and the community has created many options.
+Here are a few of the common commands and options you will often use.
 
-- `git log` - Display the history of the project.
+- `git log` - Display a detailed history of the project.
   - `git log --oneline` - Show one commit per line, but with less detail.
-  - `git log --graph` - Show a visual diagram of the commits.
-- `git checkout` - Modify tracked files to match a different point in the history.
+  - `git log --graph` - Show a visual diagram, useful for diverging paths.
+- `git checkout` - Move to a different point in the history (modifies files in your working directory).
 
 ### ⌨️ Activity 1: Explore the history (using the CLI)
 

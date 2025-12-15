@@ -12,7 +12,7 @@ But now, that brings up more questions! 😱
 
 ### 📖 Theory: Understanding Branches
 
-Branches in Git are lightweight pointers (like labels) to specific commits. This allows working on a dependent version without influencing the original, something great for parallel feature development and collaboration.
+Branches in Git are lightweight pointers (like labels) to specific commits. This allows working on a dependent version without influencing the original, which is great for parallel feature development and collaboration.
 
 Key Concepts:
 
@@ -215,7 +215,7 @@ Let's start a branch and practice committing changes to it.
 
 1. Merge the new feature.
 
-   > 🪧 **Note:** For learning, we use the "not fast forward" option so the branch stays visible in the history. It will make our next history more interesting to explore.
+   > 🪧 **Note:** For learning, we use the "not fast forward" option so the branch stays visible in the history. It will make our visual diagram more interesting to look at.
 
    ```bash
    git merge --no-ff fix-incomplete-high-score -m "Fix high score tracker"

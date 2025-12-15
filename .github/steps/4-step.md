@@ -44,7 +44,7 @@ Let's make some changes to the game then use the CLI to show the differences.
    </div>
    ```
 
-   This will change 3 things:
+   This will demonstrate 3 kinds of changes:
 
    - Modify the `Score` label to `Current Score`
    - Add the `High Score` information.

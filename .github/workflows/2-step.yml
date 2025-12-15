@@ -56,13 +56,13 @@ jobs:
 
       # START: Check practical exercise
 
-      - name: Check for at least 2 commits on branch
+      - name: Check for at least 3 new commits
         id: check-commit-count
         continue-on-error: true
         uses: actions/github-script@v6
         env:
           commit_count: ${{ github.event.client_payload.branch_commit_count }}
-          required_count: 2
+          required_count: 3
         with:
           script: |
             // Load commit count and required count

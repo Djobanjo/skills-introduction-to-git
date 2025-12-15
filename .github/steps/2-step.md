@@ -19,7 +19,7 @@ graph LR
 
 ### What are the important Git commands?
 
-Git has many operations, but the there are a few you will use the most for local projects.
+Git has many operations, but there are a few you will use the most for local projects.
 
 - `git init` - Start a new repository to enable versioning.
 - `git add` - Group related changes together in the staging area, in preparation to "commit" them to history.
@@ -130,7 +130,7 @@ Let's also try adding files with our code editor, in this case the documentation
 
    <img width="350px" src="https://github.com/user-attachments/assets/a771b674-1fc2-40dc-a9bf-080bf83c46fc"/>
 
-1. For a second commit, also the following content to `README.md`.
+1. For a second commit, also add the following content to `README.md`.
 
    ```md
    ## How to Develop
