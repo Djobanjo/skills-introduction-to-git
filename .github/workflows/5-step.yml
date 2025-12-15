@@ -26,8 +26,8 @@ jobs:
       ISSUE_REPOSITORY: ${{ github.repository }}
       ISSUE_NUMBER: ${{ needs.find_exercise.outputs.issue-number }}
 
-    # Don't check unless at least 8 commits have been made
-    if: ${{ github.event.client_payload.branch_commit_count >= 8 }}
+    # Don't check unless at least 10 commits have been made
+    if: ${{ github.event.client_payload.branch_commit_count >= 10 }}
 
     steps:
       - name: Checkout
